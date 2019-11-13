@@ -4,6 +4,8 @@ import Editor from './Editor';
 import styles from './Document.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getMarkdown } from '../../selectors/markdownSelectors';
+import { updateMarkdownAction } from '../../actions/markdownActions';
 
 
 
@@ -25,7 +27,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateMarkdown({ target }) {
-    dispatch({ type: 'UPDATE_MARKDOWN', payload: target.value });
+    dispatch(updateMarkdownAction(target.value));
   }
 });
 

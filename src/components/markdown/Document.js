@@ -33,8 +33,8 @@ const mapDispatchToProps = dispatch => ({
   changeMarkdown({ target }) {
     dispatch(updateMarkdown(target.value));
   },
-  handleClick({ target }) {
-    dispatch(changeFile(target.name));
+  handleClick({ currentTarget }) {
+    dispatch(changeFile(currentTarget.name));
   }
 });
 

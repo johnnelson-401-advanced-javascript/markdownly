@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 export const Tab = ({ title, handleClick }) => {
 
   return (
-    <div name={title} onClick={handleClick}>
+    <button name={title} onClick={handleClick}>
       {title}
-    </div>
+    </button>
   );
 };
 

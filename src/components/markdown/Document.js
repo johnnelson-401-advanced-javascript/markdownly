@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import Preview from './Preview';
 import Editor from './Editor';
 import styles from './Document.css';
@@ -25,7 +25,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateMarkdown({ target }) {
-    dispatch({ type: UPDATE_MARKDOWN, payload: target.value });
+    dispatch({ type: 'UPDATE_MARKDOWN', payload: target.value });
   }
 });
 

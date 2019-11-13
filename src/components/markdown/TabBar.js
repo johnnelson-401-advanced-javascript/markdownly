@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tab } from './Tab';
 import PropTypes from 'prop-types';
+import styles from './TabBar.css';;
 
 
 export const TabBar = ({ files, handleClick, handleAdd }) => {
@@ -10,10 +11,10 @@ export const TabBar = ({ files, handleClick, handleAdd }) => {
   ));
 
   return (
-    <div>
+    <div className={styles.TabBar}>
       {tabElements}
-      <div onClick={handleAdd}>+</div>
-    </div>
+      <button onClick={handleAdd}>+</button>
+    </div >
   );
 };
 

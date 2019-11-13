@@ -16,8 +16,10 @@ const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick }) =
     <>
       <div className={styles.Document}>
         <TabBar files={files} handleClick={handleClick} handleAdd={handleAdd} />
-        <Editor markdown={markdown} updateMarkdown={changeMarkdown} />
-        <Preview markdown={markdown} />
+        <div style={{ 'display': 'flex' }}>
+          <Editor markdown={markdown} updateMarkdown={changeMarkdown} />
+          <Preview markdown={markdown} />
+        </div>
       </div>
     </>
   );
@@ -42,7 +44,6 @@ Document.propTypes = {
   markdown: PropTypes.string.isRequired,
   changeMarkdown: PropTypes.func.isRequired,
   files: PropTypes.array.isRequired,
-  changeFile: PropTypes.func.isRequired,
   handleAdd: PropTypes.func,
   handleClick: PropTypes.func.isRequired
 };

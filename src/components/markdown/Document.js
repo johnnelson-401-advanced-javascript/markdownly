@@ -5,16 +5,16 @@ import styles from './Document.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getMarkdown } from '../../selectors/markdownSelectors';
-import { updateMarkdownAction } from '../../actions/markdownActions';
+import { updateMarkdown } from '../../actions/markdownActions';
 
 
 
-const Document = ({ markdown, updateMarkdown }) => {
+const Document = ({ markdown, changeMarkdown }) => {
 
   return (
     <>
       <div className={styles.Document}>
-        <Editor markdown={markdown} updateMarkdown={updateMarkdown} />
+        <Editor markdown={markdown} changeMarkdown={changeMarkdown} />
         <Preview markdown={markdown} />
       </div>
     </>
@@ -27,13 +27,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateMarkdown({ target }) {
-    dispatch(updateMarkdownAction(target.value));
+    dispatch(updateMarkdown(target.value));
   }
 });
 
 Document.propTypes = {
   markdown: PropTypes.string.isRequired,
-  updateMarkdown: PropTypes.func.isRequired
+  changeMarkdown: PropTypes.func.isRequired
 };
 
 export default connect(

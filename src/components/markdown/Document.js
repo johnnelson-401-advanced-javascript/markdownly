@@ -4,14 +4,15 @@ import Editor from './Editor';
 import styles from './Document.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import TabBar from './TabBar';
 
 
-
-const Document = ({ markdown, updateMarkdown }) => {
+const Document = ({ markdown, updateMarkdown, files, handleClick, handleAdd }) => {
 
   return (
     <>
       <div className={styles.Document}>
+        <TabBar files={files}  handleClick={handleClick} handleAdd={handleAdd}/>
         <Editor markdown={markdown} updateMarkdown={updateMarkdown} />
         <Preview markdown={markdown} />
       </div>
@@ -19,8 +20,11 @@ const Document = ({ markdown, updateMarkdown }) => {
   );
 };
 
+
+
 const mapStateToProps = state => ({
-  markdown: getMarkdown(state)
+  markdown: getMarkdown(state),
+  files: getFiles(state)
 });
 
 const mapDispatchToProps = dispatch => ({

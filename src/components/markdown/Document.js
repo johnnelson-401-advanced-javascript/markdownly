@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { TabBar } from './TabBar';
 import { getMarkdown, getFiles } from '../../selectors/markdownSelectors';
-import { updateMarkdown, changeFile } from '../../actions/markdownActions';
+import { updateMarkdown, changeFile, NEW_TAB, newTab } from '../../actions/markdownActions';
 
 
 
@@ -15,7 +15,7 @@ const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick }) =
   return (
     <>
       <div className={styles.Document}>
-        <TabBar files={files} handleClick={handleClick} handleAdd={handleAdd} />
+        <TabBar files={files} handleClick={handleClick} handleAdd={()=>handleAdd(files.length)} />
         <div style={{ 'display': 'flex' }}>
           <Editor markdown={markdown} updateMarkdown={changeMarkdown} />
           <Preview markdown={markdown} />
@@ -37,6 +37,10 @@ const mapDispatchToProps = dispatch => ({
   },
   handleClick({ currentTarget }) {
     dispatch(changeFile(currentTarget.name));
+  },
+  handleAdd(length) {
+    dispatch(newTab(length)),
+    dispatch(changeFile(length + 1));
   }
 });
 

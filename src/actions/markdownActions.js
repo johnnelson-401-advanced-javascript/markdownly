@@ -9,3 +9,10 @@ export const changeFile = (name) => ({
   type: CHANGE_FILE,
   payload: name
 });
+
+export const NEW_TAB = 'NEW_TAB';
+export const newTab = (length) => ({
+  type: NEW_TAB,
+  payload: length + 1
+});
+

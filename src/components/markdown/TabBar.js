@@ -1,12 +1,12 @@
 import React from 'react';
-import Tab from './Tab';
+import { Tab } from './Tab';
 import PropTypes from 'prop-types';
 
 
 export const TabBar = ({ files, handleClick, handleAdd }) => {
 
   const tabElements = files.map(file => (
-    <Tab key={file.title} title={file.title} handleClick={handleClick} />
+    <Tab key={file} title={file} handleClick={handleClick} />
   ));
 
   return (

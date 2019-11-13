@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { TabBar } from './TabBar';
 import { getMarkdown, getFiles } from '../../selectors/markdownSelectors';
-import { updateMarkdown, changeFile, NEW_TAB, newTab } from '../../actions/markdownActions';
+import { updateMarkdown, changeFile, newTab } from '../../actions/markdownActions';
 
 
 

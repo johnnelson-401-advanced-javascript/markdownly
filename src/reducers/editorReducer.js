@@ -1,5 +1,4 @@
-import { UPDATE_MARKDOWN, NEW_TAB } from '../actions/markdownActions';
-import { CHANGE_FILE } from '../actions/markdownActions';
+import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE } from '../actions/markdownActions';
 
 const initialState = {
   files: { 1: 'type here', 2: 'wtf' },

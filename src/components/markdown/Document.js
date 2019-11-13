@@ -5,14 +5,17 @@ import styles from './Document.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TabBar from './TabBar';
+import { getMarkdown } from '../../selectors/markdownSelectors';
+import { updateMarkdown } from '../../actions/markdownActions';
 
 
-const Document = ({ markdown, updateMarkdown, files, handleClick, handleAdd }) => {
+
+const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick }) => {
 
   return (
     <>
       <div className={styles.Document}>
-        <TabBar files={files}  handleClick={handleClick} handleAdd={handleAdd}/>
+        <TabBar files={files} handleClick={handleClick} handleAdd={handleAdd} />
         <Editor markdown={markdown} updateMarkdown={updateMarkdown} />
         <Preview markdown={markdown} />
       </div>
@@ -29,13 +32,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateMarkdown({ target }) {
-    dispatch({ type: 'UPDATE_MARKDOWN', payload: target.value });
+    dispatch(updateMarkdown(target.value));
   }
 });
 
 Document.propTypes = {
   markdown: PropTypes.string.isRequired,
-  updateMarkdown: PropTypes.func.isRequired
+  changeMarkdown: PropTypes.func.isRequired
 };
 
 export default connect(

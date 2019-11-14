@@ -9,7 +9,7 @@ export const Tab = ({ title, id, handleClick, handleDelete, handleTitle, editTit
       {!editTitle.editInput && <button className={styles.fileTab} name={title} id={id} onClick={handleClick} >
         {title}
       </button>}
-      {editTitle.editInput && editTitle.id === id  && <form onSubmit={() => handleTitleEdit(id)} ><input type='text' value={title} id={id} onChange={handleTitle} /></form>}
+      {editTitle.editInput && editTitle.id === id  && <form onSubmit={() => handleTitleEdit(id)} ><input type='text' value={title} id={id} onChange={handleTitle} onBlur={() => handleTitleEdit(id)} /></form>}
       <button className={styles.deleteButton} name={title} onClick={() => handleDelete(id)}>⌫</button>
     </span>
   );

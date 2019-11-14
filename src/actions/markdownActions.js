@@ -27,3 +27,10 @@ export const changeTitle = (title, id) => ({
   payload: { title: title, id: id }
 });
 
+export const TOGGLE_EDIT = 'TOGGLE_EDIT';
+export const toggleEdit = (id) => ({
+  type: TOGGLE_EDIT,
+  payload: id
+});
+
+

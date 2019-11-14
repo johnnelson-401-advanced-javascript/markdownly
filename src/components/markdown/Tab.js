@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Tab.css';
 
-export const Tab = ({ title, id, handleClick, handleDelete, handleTitle }) => {
-
+export const Tab = ({ title, id, handleClick, handleDelete, handleTitle, editTitle, handleTitleEdit }) => {
   return (
     <span className={styles.Tab}>
-      <button className={styles.fileTab} name={title} id={id} onClick={handleClick} onDoubleClick={handleTitle}>
+      <button className={styles.titleButton} id={id} name={title} onClick={() => handleTitleEdit(id)}>✎</button>
+      {!editTitle.editInput && <button className={styles.fileTab} name={title} id={id} onClick={handleClick} >
         {title}
-      </button>
+      </button>}
+      {editTitle.editInput && editTitle.id === id  && <form onSubmit={() => handleTitleEdit(id)} ><input type='text' value={title} id={id} onChange={handleTitle} /></form>}
       <button className={styles.deleteButton} name={title} onClick={() => handleDelete(id)}>⌫</button>
     </span>
   );
@@ -20,5 +21,10 @@ Tab.propTypes = {
   handleDelete: PropTypes.func.isRequired,
   focus: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  handleTitle: PropTypes.func.isRequired
+  handleTitle: PropTypes.func.isRequired,  
+  editTitle: PropTypes.shape({
+    editInput: PropTypes.bool.isRequired,
+    id: PropTypes.string.isRequired
+  }),
+  handleTitleEdit: PropTypes.func.isRequired
 };

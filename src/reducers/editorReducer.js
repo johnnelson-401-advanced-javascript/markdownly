@@ -1,4 +1,4 @@
-import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE, DELETE_TAB, CHANGE_TITLE } from '../actions/markdownActions';
+import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE, DELETE_TAB, CHANGE_TITLE, TOGGLE_EDIT } from '../actions/markdownActions';
 import { newId } from '../utils/idGenerator';
 
 const id1 = newId();
@@ -17,7 +17,11 @@ const initialState = {
       markdown: 'type here'
     }
   ],
-  focus: id1
+  focus: id1,
+  editTitle: {
+    editInput: false,
+    id: id1
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -46,7 +50,7 @@ const reducer = (state = initialState, action) => {
     case DELETE_TAB: {
       let newState = { ...state };
       let newFocus;
-
+      // this logic repeats, extract / refactor    -John
       const file = newState.files.find(file => {
         return file.id === action.payload;
       });
@@ -78,7 +82,6 @@ const reducer = (state = initialState, action) => {
     }
     case CHANGE_TITLE: {
       let newState = { ...state };
-
       const file = newState.files.find(file => {
         return file.id === action.payload.id;
       });
@@ -86,6 +89,9 @@ const reducer = (state = initialState, action) => {
       const index = newState.files.indexOf(file);
       newState.files[index].title = action.payload.title;
       return newState;
+    }
+    case TOGGLE_EDIT: {
+      return { ...state, editTitle: { editInput: !state.editTitle.editInput, id: action.payload } };
     }
     default:
       return state;

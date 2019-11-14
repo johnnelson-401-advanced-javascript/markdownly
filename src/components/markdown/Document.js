@@ -6,17 +6,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { TabBar } from './TabBar';
 import { getMarkdown, getFiles, getFocus } from '../../selectors/markdownSelectors';
-import { updateMarkdown, changeFile, newTab, deleteTab } from '../../actions/markdownActions';
+import { updateMarkdown, changeFile, newTab, deleteTab, changeTitle } from '../../actions/markdownActions';
 
 
 
-const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick, handleDelete }) => {
+const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick, handleDelete, handleTitle }) => {
 
   return (
     <>
       <div className={styles.Document}>
         <TabBar files={files}
           handleClick={handleClick}
+          handleTitle={handleTitle}
           handleAdd={() => handleAdd()}
           handleDelete={handleDelete}
         />
@@ -48,6 +49,9 @@ const mapDispatchToProps = dispatch => ({
   },
   handleDelete(id) {
     dispatch(deleteTab(id));
+  },
+  handleTitle(title, id) {
+    dispatch(changeTitle(title, id));
   }
 });
 
@@ -58,7 +62,8 @@ Document.propTypes = {
   handleAdd: PropTypes.func,
   handleClick: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  focus: PropTypes.string.isRequired
+  focus: PropTypes.string.isRequired,
+  handleTitle: PropTypes.func.isRequired
 };
 
 export default connect(

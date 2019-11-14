@@ -1,4 +1,4 @@
-import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE, DELETE_TAB } from '../actions/markdownActions';
+import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE, DELETE_TAB, CHANGE_TITLE } from '../actions/markdownActions';
 import { newId } from '../utils/idGenerator';
 
 const id1 = newId();
@@ -76,9 +76,21 @@ const reducer = (state = initialState, action) => {
         ...newState, focus: newFocus
       };
     }
+    case CHANGE_TITLE: {
+      let newState = { ...state };
+
+      const file = newState.files.find(file => {
+        return file.id === action.payload.id;
+      });
+
+      const index = newState.files.indexOf(file);
+      newState.files[index].title = action.payload.title;
+      return newState;
+    }
     default:
       return state;
   }
+
 };
 
 export default reducer;

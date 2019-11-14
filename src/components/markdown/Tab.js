@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Tab.css';
 
-export const Tab = ({ title, id, handleClick, handleDelete }) => {
+export const Tab = ({ title, id, handleClick, handleDelete, handleTitle }) => {
 
   return (
     <span className={styles.Tab}>
-      <button className={styles.fileTab} name={title} id={id} onClick={handleClick}>
+      <button className={styles.fileTab} name={title} id={id} onClick={handleClick} onDoubleClick={handleTitle}>
         {title}
       </button>
       <button className={styles.deleteButton} name={title} onClick={() => handleDelete(id)}>⌫</button>
@@ -19,5 +19,6 @@ Tab.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   focus: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  handleTitle: PropTypes.func.isRequired
 };

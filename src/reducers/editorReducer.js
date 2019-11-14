@@ -1,4 +1,4 @@
-import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE } from '../actions/markdownActions';
+import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE, DELETE_TAB } from '../actions/markdownActions';
 
 const initialState = {
   files: { 1: 'type here', 2: 'wtf' },
@@ -13,6 +13,11 @@ const reducer = (state = initialState, action) => {
       return { ...state, focus: action.payload };
     case NEW_TAB:
       return { ...state, files: { ...state.files, [action.payload]: 'Type Here' } };
+    case DELETE_TAB: {
+      const newState = state;
+      delete newState.files[action.payload];
+      return newState;
+    }
     default:
       return state;
   }

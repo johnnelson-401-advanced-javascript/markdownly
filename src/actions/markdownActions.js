@@ -16,3 +16,9 @@ export const newTab = (length) => ({
   payload: length + 1
 });
 
+export const DELETE_TAB = 'DELETE_TAB';
+export const deleteTab = (name) => ({
+  type: DELETE_TAB,
+  payload: name
+});
+

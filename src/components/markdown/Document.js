@@ -48,9 +48,6 @@ const mapDispatchToProps = dispatch => ({
   },
   handleDelete(id) {
     dispatch(deleteTab(id));
-    if(focus == id) {
-      dispatch(changeFile(focus === 1 ? 2 : focus - 1));
-    }
   }
 });
 

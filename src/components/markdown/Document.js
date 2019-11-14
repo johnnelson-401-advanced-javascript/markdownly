@@ -10,16 +10,16 @@ import { updateMarkdown, changeFile, newTab, deleteTab } from '../../actions/mar
 
 
 
-const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick, handleDelete, focus }) => {
+const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick, handleDelete }) => {
 
   return (
     <>
       <div className={styles.Document}>
         <TabBar files={files}
           handleClick={handleClick}
-          handleAdd={() => handleAdd(files.length)}
+          handleAdd={() => handleAdd()}
           handleDelete={handleDelete}
-          focus={focus} />
+        />
         <div style={{ 'display': 'flex' }}>
           <Editor markdown={markdown} updateMarkdown={changeMarkdown} />
           <Preview markdown={markdown} />
@@ -33,7 +33,7 @@ const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick, han
 const mapStateToProps = state => ({
   markdown: getMarkdown(state),
   files: getFiles(state),
-  focus: getFocus(state)
+  focus: getFocus(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -41,18 +41,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateMarkdown(target.value));
   },
   handleClick({ currentTarget }) {
-    dispatch(changeFile(currentTarget.name));
+    dispatch(changeFile(currentTarget.id));
   },
-  handleAdd(length) {
-    dispatch(newTab(length));
-    dispatch(changeFile(length + 1));
+  handleAdd() {
+    dispatch(newTab());
   },
-  handleDelete(focus, target) {
-    console.log(focus);
-    dispatch(deleteTab(target));
-    if(focus === target) {
-      dispatch(changeFile(focus === 1 ? 2 : focus - 1));
-    }
+  handleDelete(id) {
+    dispatch(deleteTab(id));
   }
 });
 
@@ -63,7 +58,7 @@ Document.propTypes = {
   handleAdd: PropTypes.func,
   handleClick: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  focus: PropTypes.number.isRequired
+  focus: PropTypes.string.isRequired
 };
 
 export default connect(

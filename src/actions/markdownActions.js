@@ -24,6 +24,6 @@ export const deleteTab = (id) => ({
 export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const changeTitle = (title, id) => ({
   type: CHANGE_TITLE,
-  payload: { title, id }
+  payload: { title: title, id: id }
 });
 

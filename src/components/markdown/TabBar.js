@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import styles from './TabBar.css';
 
 
-export const TabBar = ({ focus, files, handleClick, handleAdd, handleDelete }) => {
+export const TabBar = ({ files, handleClick, handleAdd, handleDelete }) => {
 
   const tabElements = files.map(file => (
-    <Tab key={file}
-      title={file}
+    <Tab key={file.id}
+      id={file.id}
+      title={file.title}
       handleClick={handleClick}
-      handleDelete={handleDelete}
-      focus={focus} />
+      handleDelete={handleDelete} />
   ));
 
   return (
@@ -27,5 +27,5 @@ TabBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleAdd: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  focus: PropTypes.number.isRequired
+  focus: PropTypes.string.isRequired
 };

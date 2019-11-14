@@ -10,7 +10,7 @@ import { updateMarkdown, changeFile, newTab, deleteTab } from '../../actions/mar
 
 
 
-const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick, handleDelete, focus }) => {
+const Document = ({ markdown, files, changeMarkdown, handleAdd, handleClick, handleDelete }) => {
 
   return (
     <>

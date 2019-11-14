@@ -27,5 +27,5 @@ TabBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleAdd: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  focus: PropTypes.number.isRequired
+  focus: PropTypes.string.isRequired
 };

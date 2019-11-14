@@ -18,5 +18,5 @@ Tab.propTypes = {
   title: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  focus: PropTypes.number.isRequired
+  focus: PropTypes.string.isRequired
 };

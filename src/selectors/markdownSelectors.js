@@ -1,4 +1,4 @@
-export const getMarkdown = state => state.editor.files[state.editor.focus];
+export const getMarkdown = state => state.editor.files.find(element => element.id === state.editor.focus).markdown;
 export const getFiles = state => {
   return Object.keys(state.editor.files);
 };

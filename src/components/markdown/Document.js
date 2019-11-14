@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => ({
   handleDelete(focus, target) {
     console.log(focus);
     dispatch(deleteTab(target));
-    if(focus === target) {
+    if(focus == target) {
       dispatch(changeFile(focus === 1 ? 2 : focus - 1));
     }
   }
@@ -63,7 +63,7 @@ Document.propTypes = {
   handleAdd: PropTypes.func,
   handleClick: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  focus: PropTypes.number.isRequired
+  focus: PropTypes.string.isRequired
 };
 
 export default connect(

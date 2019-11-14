@@ -1,10 +1,11 @@
 import React from 'react';
 import Document from './markdown/Document';
+import Header from './header/Header';
 
 export default function App() {
   return (
     <>
-      <h1>Markdown Editor</h1>
+      <Header />
       <Document />
     </>
   );

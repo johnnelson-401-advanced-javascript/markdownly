@@ -1,0 +1,19 @@
+.Tab{
+  border: 1px solid black;
+  background-color: crimson;
+  
+  button{
+    border: none;
+    outline: none;
+  }
+  button:hover{
+    background-color: pink;
+  }
+  .fileTab{
+    background-color: crimson;
+    min-width: 2em;
+  }
+  .deleteButton{
+    background-color: crimson;
+  }
+}

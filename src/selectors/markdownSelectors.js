@@ -6,3 +6,4 @@ export const getFiles = state => {
 };
 export const getFocus = state => state.editor.focus;
 export const getLatestTab = state => state.editor.files[state.editor.files.length];
+export const getEditTitle = state => state.editor.editTitle;

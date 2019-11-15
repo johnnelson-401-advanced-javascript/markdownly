@@ -1,10 +1,12 @@
-import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE, DELETE_TAB } from '../actions/markdownActions';
+import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE, DELETE_TAB, CHANGE_TITLE, TOGGLE_EDIT } from '../actions/markdownActions';
 import { newId } from '../utils/idGenerator';
+import { loadState } from '../utils/localStorage';
+// import { loadState } from '../utils/localStorage';
 
 const id1 = newId();
 const id2 = newId();
 
-const initialState = {
+let initialState = {
   files: [
     {
       id: id1,
@@ -17,8 +19,17 @@ const initialState = {
       markdown: 'type here'
     }
   ],
-  focus: id1
+  focus: id1,
+  editTitle: {
+    editInput: false,
+    id: id1
+  }
 };
+
+const persistedState = loadState();
+  if(persistedState) {
+  initialState = persistedState;
+}
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
@@ -46,7 +57,7 @@ const reducer = (state = initialState, action) => {
     case DELETE_TAB: {
       let newState = { ...state };
       let newFocus;
-
+      // this logic repeats, extract / refactor    -John
       const file = newState.files.find(file => {
         return file.id === action.payload;
       });
@@ -76,9 +87,23 @@ const reducer = (state = initialState, action) => {
         ...newState, focus: newFocus
       };
     }
+    case CHANGE_TITLE: {
+      let newState = { ...state };
+      const file = newState.files.find(file => {
+        return file.id === action.payload.id;
+      });
+
+      const index = newState.files.indexOf(file);
+      newState.files[index].title = action.payload.title;
+      return newState;
+    }
+    case TOGGLE_EDIT: {
+      return { ...state, editTitle: { editInput: !state.editTitle.editInput, id: action.payload } };
+    }
     default:
       return state;
   }
+
 };
 
 export default reducer;

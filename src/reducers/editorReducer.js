@@ -4,7 +4,7 @@ import { newId } from '../utils/idGenerator';
 const id1 = newId();
 const id2 = newId();
 
-const initialState = {
+let initialState = {
   files: [
     {
       id: id1,
@@ -23,6 +23,11 @@ const initialState = {
     id: id1
   }
 };
+
+const persistedState = localStorage.getItem('data');
+if(persistedState) {
+  initialState = persistedState;
+}
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {

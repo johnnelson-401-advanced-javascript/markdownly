@@ -1,23 +1,30 @@
-import { createStore } from 'redux';
-import reducer from './reducers';
-import { saveState } from './utils/localStorage';
+import { createStore, applyMiddleware } from 'redux';
+import editor from './reducers';
+import { saveState, loadState } from './utils/localStorage';
 
 
-const middleWare = store => next => action => {
+const persistedState = loadState();
+
+const localStorageMiddleWare = store => next => action => {
+
+  next(action);
   
-  store.subscribe(() => {
-    saveState(store.getState().editor);
-  });
+  if(action.type === 'UPDATE_MARKDOWN') {
+    saveState(store.getState());
+    
+  }
+  
+  console.log(store.getState());
 
-next(action);
-
-}
+};
 
 export default createStore(
-  reducer,
+  editor,
+  persistedState,
   applyMiddleware(
-    middleWare
-  )
+    localStorageMiddleWare
+  ),
+
 );
 
 

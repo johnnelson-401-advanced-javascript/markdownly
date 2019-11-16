@@ -13,8 +13,6 @@ const localStorageMiddleWare = store => next => action => {
     saveState(store.getState());
     
   }
-  
-  console.log(store.getState());
 
 };
 

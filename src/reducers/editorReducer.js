@@ -1,14 +1,9 @@
 import { UPDATE_MARKDOWN, NEW_TAB, CHANGE_FILE, DELETE_TAB, CHANGE_TITLE, TOGGLE_EDIT } from '../actions/markdownActions';
 import { newId } from '../utils/idGenerator';
-import { loadState } from '../utils/localStorage';
 
 const id1 = newId();
 const id2 = newId();
 
-const persistedState = loadState();
-if(persistedState && persistedState.files >= 1) {
-  initialState = persistedState;
-}
 let initialState = {
   files: [
     {

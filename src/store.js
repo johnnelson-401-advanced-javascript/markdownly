@@ -11,9 +11,7 @@ const localStorageMiddleWare = store => next => action => {
   
   if(action.type === 'UPDATE_MARKDOWN') {
     saveState(store.getState());
-    
   }
-
 };
 
 export default createStore(
@@ -22,7 +20,6 @@ export default createStore(
   applyMiddleware(
     localStorageMiddleWare
   ),
-
 );
 
 

@@ -30,7 +30,7 @@ TabBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleAdd: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  focus: PropTypes.string.isRequired,
+  // focus: PropTypes.string.isRequired,
   handleTitle: PropTypes.func.isRequired,
   editTitle: PropTypes.shape({
     editInput: PropTypes.bool.isRequired,
